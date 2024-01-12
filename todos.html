@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>Todo List</title>
+  </head>
+  <body>
+    <script>
+      let id = 1;
+      function addTodo() {
+        const title = document.getElementById("titre").value;
+        const description = document.getElementById("desc").value;
+
+        const outer = document.createElement("div");
+        outer.setAttribute("id", id++);
+
+        const titleElement = document.createElement("h1");
+        titleElement.innerHTML = title;
+
+        const descriptionElement = document.createElement("p");
+        descriptionElement.innerHTML = description;
+
+        const markElement = document.createElement("button");
+        markElement.innerHTML = "Mark as done";
+        markElement.addEventListener("click", function () {
+          const parent = document.getElementById(outer.id);
+          parent.children[2].innerHTML = "Done!";
+        });
+
+        outer.appendChild(titleElement);
+        outer.appendChild(descriptionElement);
+        outer.appendChild(markElement);
+        document.body.appendChild(outer);
+      }
+    </script>
+    <input id="titre" type="text" placeholder="Titre" /><br /><br />
+    <input id="desc" type="text" placeholder="Description" /><br /><br />
+    <button onclick="addTodo()">Add Todo</button>
+  </body>
+</html>

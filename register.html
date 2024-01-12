@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <title>
+            Login
+        </title>
+    </head>
+
+    <body>
+        
+            <label for="un">Username</label>
+            <input type="text" id="un" placeholder="Username"></br></br>
+            <label for="email">Email</label>
+            <input type="text" id="email" placeholder="Email"></br></br>
+            <label for="pw">Password</label>
+            <input type="password" id="pw" placeholder=" Password"></br></br>            
+            <label for="cpw">Confirm Password</label>
+            <input type="password" id="cpw" placeholder="Confirm Password"></br></br>
+            <button onclick="validate()">Sign Up</button> </br></br>
+            <div id="errors"></div>         
+    
+        <script>
+            async function validate(){
+                const user=document.getElementById("un").value
+                const email=document.getElementById("email").value
+                const pass1=document.getElementById("pw").value
+                const pass2=document.getElementById("cpw").value
+                console.log(pass1)//saad1234
+                console.log(pass2)
+                if(pass1!=pass2){
+                    const backPropagate=document.getElementById("errors");
+                    backPropagate.innerHTML="Passwords doesn't match";
+            
+                }else{
+                    console.log("ready to send")
+                    try{
+                    const response=await fetch("http://localhost:3000/signup",{
+                        method:"POST",
+                        headers:{
+                        'username':user,
+                        'email':email,
+                        "password":pass1
+                    }})
+                    const data=await response.json();
+
+                    document.write(data.Message);
+                }catch(err){
+                    document.getElementById("errors").innerHTML=err.message;
+                }
+                }
+            }
+        </script>
+    </body>
+</html>

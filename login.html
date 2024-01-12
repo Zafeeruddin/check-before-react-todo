@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>
+            Login
+        </title>
+    </head>
+
+    <body>
+        <label for="email">Email</label>
+        <input type="text" id="email" placeholder="Email"></br></br>
+        <label for="pw">Password</label>
+        <input type="password" id="pw" placeholder=" Password"></br></br>            
+        <button onclick="signin()">Login</button>   
+        <div id="errors"></div>  
+        <script>
+            async function signin(){
+                const password=document.getElementById("pw").value;
+                const email=document.getElementById("email").value
+                try{
+                    const response = await fetch("http://localhost:3000/login", {
+                        method: "POST",
+                        headers:{
+                            "email":email,
+                            "password":password
+                        }
+                    });
+                    const data=await response.json();
+                    document.write(data.msg)
+                }catch(err){
+                    document.getElementById("errors").innerHTML=err.message;
+                }
+
+            }
+        </script>       
+    </body>
+</html>
