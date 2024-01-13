@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 const mongoose=require("mongoose");
-mongoose.connect("mongodb+srv://mohammedxafeer:No9YrDQ5MqHNx10w@cluster0.ze6jwfk.mongodb.net/userapp")
+mongoose.connect("")
 const User=mongoose.model('users',{
     username:String,
     email:String,
